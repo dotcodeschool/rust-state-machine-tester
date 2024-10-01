@@ -1,3 +1,4 @@
+course_name: "Rust State Machine"
 stages:
   - name: "Stage name"
     slug: "0x0ac6"
