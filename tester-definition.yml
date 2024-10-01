@@ -24,7 +24,7 @@ stages:
                 optional: true
                 cmd: "cargo test foo"
                 message_on_fail: "This test failed, back to the drawing board."
-                message_on_success: "This test passed, congrats!"
+                message_on_success: "`Foo` test passed, congrats!"
               - name: "Bazz"
                 slug: "0x4992"
                 optional: true
