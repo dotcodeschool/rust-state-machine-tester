@@ -1,0 +1,48 @@
+stages:
+  - name: "Stage name"
+    slug: "0x0ac6"
+    description: "Stage description"
+    lessons:
+      - name: "Lesson name"
+        slug: "0x78bc"
+        description: "Lesson description"
+        duration: 3600
+        content:
+          - type: "markdown"
+            file: "./p2p.md"
+            position:
+              x: 0
+              y: 0
+        suites:
+          - name: "Suite 1"
+            slug: "0x8aaf"
+            optional: false
+            tests:
+              - name: "Foo"
+                slug: "0x56e3"
+                optional: true
+                cmd: "cargo test foo"
+                message_on_fail: "This test failed, back to the drawing board."
+                message_on_success: "This test passed, congrats!"
+              - name: "Bazz"
+                slug: "0x4992"
+                optional: true
+                cmd: "cargo test bazz"
+                message_on_fail: "This test failed, back to the drawing board."
+                message_on_success: "This test passed, congrats!"
+          - name: "Suite 2"
+            slug: "0xb6a8"
+            optional: false
+            tests:
+              - name: "Foo"
+                slug: "0x7b65"
+                optional: true
+                cmd: "cargo test foo"
+                message_on_fail: "This test failed, back to the drawing board."
+                message_on_success: "This test passed, congrats!"
+              - name: "Bazz"
+                slug: "0x7961"
+                optional: true
+                cmd: "cargo test bazz"
+                message_on_fail: "This test failed, back to the drawing board."
+                message_on_success: "This test passed, congrats!"
