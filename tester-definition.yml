@@ -17,17 +17,17 @@ sections:
                 cmd: "cargo run"
                 message_on_fail: "Looks like `cargo run` is failing to execute. Maybe there's a bug in your code?"
                 message_on_success: "Congrats! You've successfully initialized your Rust Project."
-    - name: "Rust Tooling"
-            slug: "1-lesson-2"
-            duration: 3600
-            suites:
-              - name: "rustfmt"
-                slug: "1-2-rustfmt"
-                optional: false
-                tests:
-                  - name: "cargo init"
-                    slug: "1-1-cargo-init-1"
-                    optional: true
-                    cmd: "if [[ -e rustfmt.toml ]]; then echo "\`rustfmt.toml\` found"; else echo "\`rustfmt.toml\` not found"; fi"
-                    message_on_fail: "`rustfmt.toml` not found"
-                    message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
+      - name: "Rust Tooling"
+        slug: "1-lesson-2"
+        duration: 3600
+        suites:
+          - name: "rustfmt"
+            slug: "1-2-rustfmt"
+            optional: false
+            tests:
+              - name: "cargo init"
+                slug: "1-1-cargo-init-1"
+                optional: true
+                cmd: "if [[ -e rustfmt.toml ]]; then echo "\`rustfmt.toml\` found"; else echo "\`rustfmt.toml\` not found"; fi"
+                message_on_fail: "`rustfmt.toml` not found"
+                message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
