@@ -25,8 +25,8 @@ sections:
             slug: "1-2-rustfmt"
             optional: false
             tests:
-              - name: "cargo init"
-                slug: "1-1-cargo-init-1"
+              - name: "rustfmt"
+                slug: "1-2-rustfmt"
                 optional: true
                 cmd: "if [ -e rustfmt.toml ]; then echo '`rustfmt.toml` found'; else echo '`rustfmt.toml` not found' && exit 1; fi"
                 message_on_fail: "`rustfmt.toml` not found"
