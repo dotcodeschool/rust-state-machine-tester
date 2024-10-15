@@ -1,49 +1,33 @@
 course_name: "Rust State Machine"
-stages:
-  - name: "Stage name"
-    slug: "0x0ac6"
-    description: "Stage description"
+sections:
+  - name: "Introduction to the Rust State Machine"
+    slug: "section-1"
     lessons:
-      - name: "Lesson name"
-        slug: "0x78bc"
-        description: "Lesson description"
+      - name: "Initialize your Rust Project"
+        slug: "1-lesson-1"
         duration: 3600
-        content:
-          - type: "markdown"
-            file: "./p2p.md"
-            position:
-              x: 0
-              y: 0
         suites:
-          - name: "Suite 1"
-            slug: "0x8aaf"
+          - name: "cargo init"
+            slug: "1-1-cargo-init"
             optional: false
             tests:
-              - name: "Foo"
-                slug: "0x56e3"
-                optional: true
-                cmd: "cargo test foo"
-                message_on_fail: "This test failed, back to the drawing board."
-                message_on_success: "`Foo` test passed, congrats!"
-              - name: "Bazz"
-                slug: "0x4992"
-                optional: true
-                cmd: "cargo test bazz"
-                message_on_fail: "This test failed, back to the drawing board."
-                message_on_success: "This test passed, congrats!"
-          - name: "Suite 2"
-            slug: "0xb6a8"
-            optional: false
-            tests:
-              - name: "Foo"
-                slug: "0x7b65"
-                optional: true
-                cmd: "cargo test foo"
-                message_on_fail: "This test failed, back to the drawing board."
-                message_on_success: "This test passed, congrats!"
-              - name: "Bazz"
-                slug: "0x7961"
-                optional: true
-                cmd: "cargo test bazz"
-                message_on_fail: "This test failed, back to the drawing board."
-                message_on_success: "This test passed, congrats!"
+              - name: "cargo init"
+                slug: "1-1-cargo-init-1"
+                optional: false
+                cmd: "cargo run"
+                message_on_fail: "Looks like `cargo run` is failing to execute. Maybe there's a bug in your code?"
+                message_on_success: "Congrats! You've successfully initialized your Rust Project."
+    - name: "Rust Tooling"
+            slug: "1-lesson-2"
+            duration: 3600
+            suites:
+              - name: "rustfmt"
+                slug: "1-2-rustfmt"
+                optional: false
+                tests:
+                  - name: "cargo init"
+                    slug: "1-1-cargo-init-1"
+                    optional: true
+                    cmd: "if [[ -e rustfmt.toml ]]; then echo "\`rustfmt.toml\` found"; else echo "\`rustfmt.toml\` not found"; fi"
+                    message_on_fail: "`rustfmt.toml` not found"
+                    message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
