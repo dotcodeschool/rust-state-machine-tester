@@ -28,6 +28,6 @@ sections:
               - name: "cargo init"
                 slug: "1-1-cargo-init-1"
                 optional: true
-                cmd: "if [[ -e rustfmt.toml ]]; then echo "\`rustfmt.toml\` found"; else echo "\`rustfmt.toml\` not found"; fi"
+                cmd: "if [[ -e rustfmt.toml ]]; then echo '\`rustfmt.toml\` found'; else echo '\`rustfmt.toml\` not found'; fi"
                 message_on_fail: "`rustfmt.toml` not found"
                 message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
