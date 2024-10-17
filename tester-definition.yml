@@ -17,8 +17,8 @@ sections:
             slug: "foo"
             optional: true
             cmd: "cargo test -p foo"
-            message_on_fail: "`foo` passed"
-            message_on_success: "`foo` failed"
+            message_on_fail: "`foo` failed"
+            message_on_success: "`foo` passed"
       - name: "Rust Tooling"
         slug: "1-lesson-2"
         duration: 3600
