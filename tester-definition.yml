@@ -16,7 +16,7 @@ sections:
           - name: "foo"
             slug: "foo"
             optional: true
-            cmd: "cargo test -p foo"
+            cmd: "cargo test foo"
             message_on_fail: "`foo` failed"
             message_on_success: "`foo` passed"
       - name: "Rust Tooling"
