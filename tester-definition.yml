@@ -1,14 +1,14 @@
 course_name: "Rust State Machine"
 sections:
   - name: "Introduction to the Rust State Machine"
-    slug: "section-1"
+    slug: "1" # This must match `{sectionIndex}`
     lessons:
       - name: "Initialize your Rust Project"
-        slug: "1-lesson-1"
+        slug: "1-1" # This must match `{sectionIndex}-{lessonIndex}`
         duration: 3600
         tests:
           - name: "cargo init"
-            slug: "1-1-cargo-init-1"
+            slug: "cargo-init" # This must be unique for this entire course
             optional: false
             cmd: "cargo run"
             message_on_fail: "Looks like `cargo run` is failing to execute. Maybe there's a bug in your code?"
@@ -20,11 +20,11 @@ sections:
             message_on_fail: "`foo` failed"
             message_on_success: "`foo` passed"
       - name: "Rust Tooling"
-        slug: "1-lesson-2"
+        slug: "1-2"
         duration: 3600
         tests:
           - name: "rustfmt"
-            slug: "1-2-rustfmt"
+            slug: "rustfmt"
             optional: true
             cmd: "if [ -e rustfmt.toml ]; then echo '`rustfmt.toml` found'; else echo '`rustfmt.toml` not found' && exit 1; fi"
             message_on_fail: "`rustfmt.toml` not found"
