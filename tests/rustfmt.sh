@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Current working directory: $(pwd)"
 if [ -e rustfmt.toml ]; then
     echo '`rustfmt.toml` found';
 else
