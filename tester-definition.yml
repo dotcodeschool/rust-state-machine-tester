@@ -10,7 +10,7 @@ sections:
           - name: "cargo init"
             slug: "cargo-init" # This must be unique for this entire course
             optional: false
-            cmd: "chmod +x ./tests/cargo_init.sh && ./tests/cargo_init.sh"
+            cmd: "./tests/cargo_init.sh"
             message_on_fail: "Looks like `cargo run` is failing to execute. Maybe there's a bug in your code?"
             message_on_success: "Congrats! You've successfully initialized your Rust Project."
           - name: "foo"
