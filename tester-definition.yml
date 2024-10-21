@@ -13,12 +13,6 @@ sections:
             cmd: "./tests/cargo_init.sh"
             message_on_fail: "Looks like `cargo run` is failing to execute. Maybe there's a bug in your code?"
             message_on_success: "Congrats! You've successfully initialized your Rust Project."
-          - name: "foo"
-            slug: "foo"
-            optional: true
-            cmd: "cargo test foo"
-            message_on_fail: "`foo` failed"
-            message_on_success: "`foo` passed"
       - name: "Rust Tooling"
         slug: "1-2"
         duration: 3600
@@ -29,3 +23,9 @@ sections:
             cmd: "./tests/rustfmt.sh"
             message_on_fail: "`rustfmt.toml` not found"
             message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
+          - name: "foo"
+            slug: "foo"
+            optional: true
+            cmd: "cargo test foo"
+            message_on_fail: "`foo` failed"
+            message_on_success: "`foo` passed"
