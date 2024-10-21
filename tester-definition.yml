@@ -26,6 +26,6 @@ sections:
           - name: "rustfmt"
             slug: "rustfmt"
             optional: true
-            cmd: "if [ -e rustfmt.toml ]; then echo '`rustfmt.toml` found'; else echo '`rustfmt.toml` not found' && exit 1; fi"
+            cmd: "./tests/rustfmt.sh"
             message_on_fail: "`rustfmt.toml` not found"
             message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
