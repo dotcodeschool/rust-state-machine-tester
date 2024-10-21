@@ -11,9 +11,8 @@ sections:
             slug: "cargo-init" # This must be unique for this entire course
             optional: false
             cmd: |
-              output=$(cargo run 2>&1)
-              status=$?
-              if [ $status -ne 0 ]; then
+              output=$(cargo run)
+              if [ $? -ne 0 ]; then
                 echo "Test Failed: The program did not exit successfully."
                 exit 1
               elif [[ $output == *"Hello, world!"* ]] && [[ $output != *"panic"* ]]; then
