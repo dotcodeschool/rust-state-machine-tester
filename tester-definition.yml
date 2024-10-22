@@ -40,7 +40,7 @@ sections:
           - name: "balances pallet struct"
             slug: "balances-pallet-struct"
             optional: false
-            cmd: "cargo test test_pallet_struct_exists"
+            cmd: "./tests/balances_wrapper_pallet_struct.sh"
             message_on_fail: "We couldn't find a 'Pallet' struct in your 'balances.rs' file. Did you forget to create it?"
             message_on_success: "You've successfully created a 'Pallet' struct in your 'balances.rs' file."
             
@@ -50,3 +50,14 @@ sections:
             cmd: "./tests/balances_mod_import_check.sh"
             message_on_fail: "We couldn't find a 'balances' module import in your 'main.rs' file. Did you forget to import it?"
             message_on_success: "Awesome! You've successfully imported the 'balances' module in your 'main.rs' file."
+      
+      - name: "Adding State to Our Pallet"
+        slug: "2-2"
+        duration: 3600
+        tests:
+          - name: "initialize balances pallet"
+            slug: "initialize-balances-pallet"
+            optional: false
+            cmd: "cargo test test_balances_pallet_initialization"
+            message_on_fail: "Looks like the 'initialize' function is either missing in your 'balances.rs' file or it's not implemented correctly."
+            message_on_success: "Great! Your balances pallet now has a state to keep track of balances."
