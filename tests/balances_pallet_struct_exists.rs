@@ -1,3 +1,4 @@
+#[path = "../src/balances.rs"]
 mod balances;
 
 #[test]
