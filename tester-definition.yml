@@ -47,6 +47,6 @@ sections:
           - name: "balances module import"
             slug: "balances-module-import"
             optional: false
-            cmd: "cargo test balances_module_import"
+            cmd: "./tests/balances_mod_import_check.sh"
             message_on_fail: "We couldn't find a 'balances' module import in your 'main.rs' file. Did you forget to import it?"
             message_on_success: "Awesome! You've successfully imported the 'balances' module in your 'main.rs' file."
