@@ -40,7 +40,7 @@ sections:
           - name: "balances pallet struct"
             slug: "balances-pallet-struct"
             optional: false
-            cmd: "cargo test balances_pallet_struct_exists"
+            cmd: "cargo test test_pallet_struct_exists"
             message_on_fail: "We couldn't find a 'Pallet' struct in your 'balances.rs' file. Did you forget to create it?"
             message_on_success: "You've successfully created a 'Pallet' struct in your 'balances.rs' file."
             
