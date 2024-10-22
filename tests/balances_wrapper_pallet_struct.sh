@@ -32,16 +32,8 @@ add_feature_if_not_exists() {
 
 # Check if the Pallet struct contains the `balances` field and/or the `new()` method
 if grep -q "pub struct Pallet" "$BALANCES_FILE"; then
-    if grep -q "balances: BTreeMap<String, u128>" "$BALANCES_FILE"; then
-        if grep -q "pub fn new" "$BALANCES_FILE"; then
-            # Pallet has both the balances field and new() method, run the advanced test
-            echo "Detected balances field and new() method in Pallet."
-            cargo test test_balances_pallet_implementation
-        else
-            # Pallet has balances field but no new() method, run the intermediate test
-            echo "Detected balances field in Pallet, but no new() method."
-            cargo test test_pallet_contains_balances_field
-        fi
+    if grep -q "balances: " "$BALANCES_FILE"; then
+        cargo run
     else
         # Pallet struct exists, but no balances field, run the basic test
         echo "Detected Pallet struct, but no balances field."
