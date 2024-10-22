@@ -23,9 +23,30 @@ sections:
             cmd: "./tests/rustfmt.sh"
             message_on_fail: "`rustfmt.toml` not found"
             message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
-          - name: "foo"
-            slug: "foo"
-            optional: true
-            cmd: "cargo test foo"
-            message_on_fail: "`foo` failed"
-            message_on_success: "`foo` passed"
+  - name: "The Balances Pallet"
+    slug: "2"
+    lessons:
+      - name: "Creating a Balances Pallet"
+        slug: "2-1"
+        duration: 3600
+        tests:
+          - name: "balances exists"
+            slug: "balances-exists"
+            optional: false
+            cmd: "./tests/balances_exists.sh"
+            message_on_fail: "We couldn't find a 'balances.rs' file in your project. Did you forget to create it?"
+            message_on_success: "You've successfully created a 'balances.rs' file."
+
+          - name: "balances pallet struct"
+            slug: "balances-pallet-struct"
+            optional: false
+            cmd: "cargo test balances_pallet_struct_exists"
+            message_on_fail: "We couldn't find a 'Pallet' struct in your 'balances.rs' file. Did you forget to create it?"
+            message_on_success: "You've successfully created a 'Pallet' struct in your 'balances.rs' file."
+            
+          - name: "balances module import"
+            slug: "balances-module-import"
+            optional: false
+            cmd: "cargo test balances_module_import"
+            message_on_fail: "We couldn't find a 'balances' module import in your 'main.rs' file. Did you forget to import it?"
+            message_on_success: "Awesome! You've successfully imported the 'balances' module in your 'main.rs' file."
