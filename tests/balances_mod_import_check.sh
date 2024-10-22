@@ -9,12 +9,18 @@ if [ ! -f "$MAIN_FILE" ]; then
     exit 1
 fi
 
-# Check for private module declaration
+# Check for different module declarations
 if grep -q "^mod balances;" "$MAIN_FILE"; then
     echo "Module 'balances' is correctly declared as private"
     exit 0
 elif grep -q "^pub mod balances;" "$MAIN_FILE"; then
-    echo "Error: Module 'balances' is declared as public"
+    echo "Error: Module 'balances' is declared as fully public"
+    exit 1
+elif grep -q "^pub(crate) mod balances;" "$MAIN_FILE"; then
+    echo "Error: Module 'balances' is declared as pub(crate)"
+    exit 1
+elif grep -q "^pub(super) mod balances;" "$MAIN_FILE"; then
+    echo "Error: Module 'balances' is declared as pub(super)"
     exit 1
 else
     echo "Error: Module 'balances' declaration not found"
