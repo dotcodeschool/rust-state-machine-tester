@@ -41,7 +41,7 @@ sections:
             slug: "balances-pallet-struct"
             optional: false
             cmd: "./tests/balances_wrapper_pallet_struct.sh"
-            message_on_fail: "We couldn't find a 'Pallet' struct in your 'balances.rs' file. Did you forget to create it?"
+            message_on_fail: "We couldn't find a 'Pallet' struct in your 'balances.rs' file. Maybe you forgot to change the visibility with using 'pub'?"
             message_on_success: "You've successfully created a 'Pallet' struct in your 'balances.rs' file."
             
           - name: "balances module import"
