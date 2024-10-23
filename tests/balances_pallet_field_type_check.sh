@@ -9,7 +9,7 @@ if grep -q "pub struct Pallet" "$BALANCES_FILE"; then
         ./add_feature.sh
         cargo test test_balances_pallet_implementation
     else
-        echo "Pallet struct does not contain the `balances` field with the correct type. Please check your implementation."
+        echo "Pallet struct does not contain the 'balances' field with the correct type. Please check your implementation."
         exit 1
     fi
 else
