@@ -6,6 +6,6 @@ mod balances;
 fn test_balances_pallet_implementation() {
 
     // Create an instance using the new() method
-    let _pallet = balances::Pallet::new();
+    let _pallet: balances::Pallet = balances::Pallet::new();
     assert!(true)
 }
