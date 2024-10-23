@@ -58,6 +58,6 @@ sections:
           - name: "initialize balances pallet"
             slug: "initialize-balances-pallet"
             optional: false
-            cmd: "cargo test test_balances_pallet_initialization"
+            cmd: "./tests/balances_pallet_field_type_check.sh"
             message_on_fail: "Looks like the 'initialize' function is either missing in your 'balances.rs' file or it's not implemented correctly."
             message_on_success: "Great! Your balances pallet now has a state to keep track of balances."
