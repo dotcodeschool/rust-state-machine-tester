@@ -61,3 +61,14 @@ sections:
             cmd: "./tests/2-2/balances_pallet_field_type_check.sh"
             message_on_fail: "Looks like the initialize function 'new()' is either missing in your 'balances.rs' file or it's not implemented correctly for your balances pallet."
             message_on_success: "Great! Your balances pallet now has a state to keep track of balances."
+      
+      - name: "Interacting with Balances"
+        slug: "2-3"
+        duration: 3600
+        tests:
+          - name: "balances interactions"
+            slug: "balances-interactions"
+            optional: false
+            cmd: "cargo test test_balances_interactions"
+            message_on_fail: "Looks like the 'set_balance' and 'balance' functions are not implemented correctly in your balances pallet."
+            message_on_success: "Awesome! You've successfully implemented the 'set_balance' and 'balance' functions in your balances pallet."
