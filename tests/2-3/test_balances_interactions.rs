@@ -1,4 +1,4 @@
-#[path = "../src/balances.rs"]
+#[path = "../../src/balances.rs"]
 mod balances;
 
 let output = Command::new("./tests/add_feature.sh").output();
