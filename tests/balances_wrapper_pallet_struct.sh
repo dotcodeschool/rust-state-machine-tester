@@ -10,7 +10,7 @@ if grep -q "pub struct Pallet" "$BALANCES_FILE"; then
     else
         # Pallet struct exists, but no balances field, run the basic test
         echo "Detected Pallet struct, but no balances field."
-        ./add_feature.sh
+        ./tests/add_feature.sh
         cargo test test_pallet_struct_exists --features early
     fi
 else
