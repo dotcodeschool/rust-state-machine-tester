@@ -10,7 +10,7 @@ sections:
           - name: "cargo init"
             slug: "cargo-init" # This must be unique for this entire course
             optional: false
-            cmd: "./tests/cargo_init.sh"
+            cmd: "./tests/1-1/cargo_init.sh"
             message_on_fail: "Looks like `cargo run` is failing to execute. Maybe there's a bug in your code?"
             message_on_success: "Congrats! You've successfully initialized your Rust Project."
       - name: "Rust Tooling"
@@ -20,7 +20,7 @@ sections:
           - name: "rustfmt"
             slug: "rustfmt"
             optional: true
-            cmd: "./tests/rustfmt.sh"
+            cmd: "./tests/1-2/rustfmt.sh"
             message_on_fail: "`rustfmt.toml` not found"
             message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
   - name: "The Balances Pallet"
@@ -33,21 +33,21 @@ sections:
           - name: "balances exists"
             slug: "balances-exists"
             optional: false
-            cmd: "./tests/balances_exists.sh"
+            cmd: "./tests/2-1/balances_exists.sh"
             message_on_fail: "We couldn't find a 'balances.rs' file in your project. Did you forget to create it?"
             message_on_success: "You've successfully created a 'balances.rs' file."
 
           - name: "balances pallet struct"
             slug: "balances-pallet-struct"
             optional: false
-            cmd: "./tests/balances_wrapper_pallet_struct.sh"
+            cmd: "./tests/2-1/balances_wrapper_pallet_struct.sh"
             message_on_fail: "We couldn't find a 'Pallet' struct in your 'balances.rs' file. Maybe you forgot to change the visibility with using 'pub'?"
             message_on_success: "You've successfully created a 'Pallet' struct in your 'balances.rs' file."
             
           - name: "balances module import"
             slug: "balances-module-import"
             optional: false
-            cmd: "./tests/balances_mod_import_check.sh"
+            cmd: "./tests/2-1/balances_mod_import_check.sh"
             message_on_fail: "We couldn't find a 'balances' module import in your 'main.rs' file. Did you forget to import it?"
             message_on_success: "Awesome! You've successfully imported the 'balances' module in your 'main.rs' file."
       
@@ -58,6 +58,6 @@ sections:
           - name: "initialize balances pallet"
             slug: "initialize-balances-pallet"
             optional: false
-            cmd: "./tests/balances_pallet_field_type_check.sh"
+            cmd: "./tests/2-2/balances_pallet_field_type_check.sh"
             message_on_fail: "Looks like the initialize function 'new()' is either missing in your 'balances.rs' file or it's not implemented correctly for your balances pallet."
             message_on_success: "Great! Your balances pallet now has a state to keep track of balances."
