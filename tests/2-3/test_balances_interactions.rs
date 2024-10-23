@@ -1,7 +1,7 @@
 #[path = "../../src/balances.rs"]
 mod balances;
 
-let output = Command::new("./tests/add_feature.sh").output();
+const _output = Command::new("./tests/add_feature.sh").output();
 
 #[test]
 #[cfg(not(feature = "early"))]
