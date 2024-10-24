@@ -72,3 +72,14 @@ sections:
             cmd: "./tests/2-3/balances_interactions_wrapper.sh"
             message_on_fail: "Looks like the 'set_balance' and 'balance' functions are not implemented correctly in your balances pallet."
             message_on_success: "Awesome! You've successfully implemented the 'set_balance' and 'balance' functions in your balances pallet."
+
+      - name: "Basic Balance Test"
+        slug: "2-4"
+        duration: 3600
+        tests:
+          - name: "basic balance test"
+            slug: "basic-balance-test"
+            optional: false
+            cmd: "./tests/2-4/check_init_balances.sh"
+            message_on_fail: "Looks like the basic balance test is failing. Did you implement the 'init_balances' test correctly?"
+            message_on_success: "Great! You've successfully written the 'init_balances' test for your balances pallet."
