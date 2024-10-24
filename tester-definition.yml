@@ -94,3 +94,10 @@ sections:
             cmd: "./tests/2-5/balances_transfer_wrapper.sh"
             message_on_fail: "Looks like the 'transfer' function is not implemented correctly in your balances pallet."
             message_on_success: "Awesome! You've successfully implemented the 'transfer' function in your balances pallet."
+
+          - name: "test transfer balance"
+            slug: "test-transfer-balance"
+            optional: false
+            cmd: "./tests/2-5/check_transfer_balance.sh"
+            message_on_fail: "Looks like the 'transfer_balance' test is either missing or failing. Did you implement it correctly?"
+            message_on_success: "Great! You've successfully written the 'transfer_balance' test for your balances pallet."
