@@ -11,27 +11,32 @@ else
     exit 1
 fi
 
-# Check if Pallet is initialized
-if grep -q "let mut.*=.*Pallet::new()" "$BALANCES_FILE"; then
+# Extract the transfer_balance function content
+TEST_CONTENT=$(sed -n '/fn transfer_balance/,/^    }$/p' "$BALANCES_FILE")
+
+# Check if Pallet is initialized in transfer_balance
+if echo "$TEST_CONTENT" | grep -q "let mut.*=.*Pallet::new()"; then
     echo "Pallet is initialized."
 else
     echo "Error: Pallet is not initialized in your test."
     exit 1
 fi
 
-# Check for core test components:
-# 1. At least one failed transfer attempt (any error case)
-# 2. At least one successful transfer
-# 3. Balance checks after transfers
-FAILED_TRANSFER=$(grep -c "assert.*transfer.*Err" "$BALANCES_FILE")
-SUCCESSFUL_TRANSFER=$(grep -c "assert.*transfer.*Ok" "$BALANCES_FILE")
-BALANCE_CHECKS=$(grep -c "assert.*balance" "$BALANCES_FILE")
+# More flexible patterns for transfer assertions
+FAILED_TRANSFER=$(echo "$TEST_CONTENT" | grep -c "Err(.*\".*\")")
+SUCCESSFUL_TRANSFER=$(echo "$TEST_CONTENT" | grep -c "Ok(())")
+BALANCE_CHECKS=$(echo "$TEST_CONTENT" | grep -c "assert_eq.*balance")
+
+echo "Debug counts:
+- Failed transfers: $FAILED_TRANSFER
+- Successful transfers: $SUCCESSFUL_TRANSFER
+- Balance checks: $BALANCE_CHECKS"
 
 if [ $FAILED_TRANSFER -ge 1 ] && [ $SUCCESSFUL_TRANSFER -ge 1 ] && [ $BALANCE_CHECKS -ge 2 ]; then
     echo "Core test cases are implemented:
-    - Failed transfer attempt(s)
-    - Successful transfer(s)
-    - Balance verification"
+    - Failed transfer attempt(s): $FAILED_TRANSFER
+    - Successful transfer(s): $SUCCESSFUL_TRANSFER
+    - Balance verification: $BALANCE_CHECKS"
 else
     echo "Error: Test should include:
     - At least one failed transfer attempt (found: $FAILED_TRANSFER)
