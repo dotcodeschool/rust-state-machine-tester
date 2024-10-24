@@ -1,8 +1,5 @@
 use version_check_macro::version_gate;
 
-#[version_gate("0.2.3")]
-use std::process::Command;
-
 #[path = "../../src/balances.rs"]
 mod balances;
 
@@ -10,7 +7,6 @@ mod balances;
 #[test]
 #[version_gate("0.2.3")]
 fn test_balances_interactions() {
-    let _output: Result<std::process::Output, std::io::Error> = Command::new("./tests/add_feature.sh").output();
     // Create an instance using the new() method
     let mut pallet: balances::Pallet = balances::Pallet::new();
     // Set the balance of an account `who` to some `amount`.
