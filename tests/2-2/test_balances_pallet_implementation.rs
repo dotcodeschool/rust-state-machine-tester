@@ -1,3 +1,5 @@
+use version_check_macro::version_gate;
+
 #[path = "../../src/balances.rs"]
 mod balances;
 

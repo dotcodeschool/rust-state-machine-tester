@@ -1,3 +1,6 @@
+use version_check_macro::version_gate;
+
+#[version_gate("0.2.3")]
 use std::process::Command;
 
 #[path = "../../src/balances.rs"]
