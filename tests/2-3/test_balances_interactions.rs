@@ -16,5 +16,5 @@ fn test_balances_interactions() {
     // Assert that the balance is correct
     assert_eq!(balance, 100);
     // Code should not panic if we try to get the balance of an account that does not exist
-    let balance = pallet.balance(&"Bob".to_string());
+    let _balance = pallet.balance(&"Bob".to_string());
 }
