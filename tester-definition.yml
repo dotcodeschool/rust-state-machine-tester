@@ -69,6 +69,6 @@ sections:
           - name: "balances interactions"
             slug: "balances-interactions"
             optional: false
-            cmd: "cargo test test_balances_interactions"
+            cmd: "./tests/2-3/balances_interactions_wrapper.sh"
             message_on_fail: "Looks like the 'set_balance' and 'balance' functions are not implemented correctly in your balances pallet."
             message_on_success: "Awesome! You've successfully implemented the 'set_balance' and 'balance' functions in your balances pallet."

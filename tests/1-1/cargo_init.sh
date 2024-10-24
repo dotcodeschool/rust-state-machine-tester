@@ -1,4 +1,5 @@
 #!/bin/bash
+./tests/helpers/update_version.sh "0.1.1"
 output=$(cargo run)
 status=$?
 

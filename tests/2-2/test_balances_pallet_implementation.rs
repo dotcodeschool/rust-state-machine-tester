@@ -2,7 +2,7 @@
 mod balances;
 
 #[test]
-#[cfg(not(feature = "early"))]
+#[version_gate("0.2.2")]
 fn test_balances_pallet_implementation() {
 
     // Create an instance using the new() method

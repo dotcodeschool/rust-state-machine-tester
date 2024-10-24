@@ -5,7 +5,7 @@ mod balances;
 
 
 #[test]
-#[cfg(not(feature = "early"))]
+#[version_gate("0.2.3")]
 fn test_balances_interactions() {
     let _output: Result<std::process::Output, std::io::Error> = Command::new("./tests/add_feature.sh").output();
     // Create an instance using the new() method

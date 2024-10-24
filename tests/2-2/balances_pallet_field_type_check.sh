@@ -1,5 +1,5 @@
 #!/bin/bash
-
+./tests/helpers/update_version.sh "0.2.2"
 # Define the file to check
 BALANCES_FILE="src/balances.rs"
 
