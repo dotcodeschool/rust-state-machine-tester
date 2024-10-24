@@ -83,3 +83,14 @@ sections:
             cmd: "./tests/2-4/check_init_balances.sh"
             message_on_fail: "Looks like the basic balance test is failing. Did you implement the 'init_balances' test correctly?"
             message_on_success: "Great! You've successfully written the 'init_balances' test for your balances pallet."
+            
+      - name: "Enable Balance Transfers"
+        slug: "2-5"
+        duration: 3600
+        tests:
+          - name: "enable balance transfers"
+            slug: "enable-balance-transfers"
+            optional: false
+            cmd: "./tests/2-5/balances_transfer_wrapper.sh"
+            message_on_fail: "Looks like the 'transfer' function is not implemented correctly in your balances pallet."
+            message_on_success: "Awesome! You've successfully implemented the 'transfer' function in your balances pallet."
