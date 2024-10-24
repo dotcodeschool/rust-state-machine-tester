@@ -1,5 +1,4 @@
 use std::process::Command;
-
 use version_check_macro::version_gate;
 
 #[path = "../../src/balances.rs"]
@@ -15,7 +14,7 @@ fn test_balances_transfer() {
     assert_eq!(pallet.balance(&"Alice".to_string()), 100);
     assert_eq!(pallet.balance(&"Bob".to_string()), 0);
     
-    // Test transfer with insufficient funds (should return some kind of error)
+    // Test transfer with insufficient funds (underflow condition)
     let result = pallet.transfer("Alice".to_string(), "Bob".to_string(), 150);
     assert!(result.is_err());
     
@@ -29,5 +28,14 @@ fn test_balances_transfer() {
     
     // Verify balances are updated correctly
     assert_eq!(pallet.balance(&"Alice".to_string()), 50);
+    assert_eq!(pallet.balance(&"Bob".to_string()), 50);
+
+    // Test overflow condition
+    pallet.set_balance(&"Alice".to_string(), u128::MAX);
+    let result = pallet.transfer("Bob".to_string(), "Alice".to_string(), 1);
+    assert!(result.is_err());
+    
+    // Balances should remain unchanged after overflow attempt
+    assert_eq!(pallet.balance(&"Alice".to_string()), u128::MAX);
     assert_eq!(pallet.balance(&"Bob".to_string()), 50);
 }
