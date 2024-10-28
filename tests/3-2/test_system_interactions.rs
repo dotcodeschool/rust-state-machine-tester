@@ -10,11 +10,11 @@ fn test_system_functionality() {
     let mut pallet = system::Pallet::new();
     
     // Test initial state
-    assert_eq!(pallet.block_number(), 0, "Initial block number should be 0");
+    assert_eq!(pallet.block_number(), 0u32, "Initial block number should be 0");
     
     // Test block number increment
     pallet.inc_block_number();
-    assert_eq!(pallet.block_number(), 1, "Block number should be 1 after increment");
+    assert_eq!(pallet.block_number(), 1u32, "Block number should be 1 after increment");
     
     // Test nonce increment for new account
     let alice = "alice".to_string();
