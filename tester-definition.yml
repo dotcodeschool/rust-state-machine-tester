@@ -101,3 +101,18 @@ sections:
             cmd: "./tests/2-5/check_transfer_balance.sh"
             message_on_fail: "Looks like the 'transfer_balance' test is either missing or failing. Did you implement it correctly?"
             message_on_success: "Great! You've successfully written the 'transfer_balance' test for your balances pallet."
+
+  - name: "The System and Runtime"
+    slug: "3"
+    lessons:
+      - name: "Introduce the System Pallet"
+        slug: "3-1"
+        duration: 3600
+        tests:
+          - name: "system exists"
+            slug: "system-exists"
+            optional: false
+            cmd: "./tests/3-1/system_exists.sh"
+            message_on_fail: "We couldn't find a 'system.rs' file in your project. Did you forget to create it?"
+            message_on_success: "You've successfully created a 'system.rs' file."
+
