@@ -16,3 +16,11 @@ mod test_balances_interactions;
 #[path = "2-5/test_balances_transfer.rs"]
 #[version_gate("0.2.5")]
 mod test_balances_transfer;
+
+#[path = "3-1/test_system_pallet_implementation"]
+#[version_gate("0.3.1")]
+mod test_system_pallet_implementation;
+
+#[path = "3-2/test_system_interactions"]
+#[version_gate("0.3.2")]
+mod test_system_interactions;
