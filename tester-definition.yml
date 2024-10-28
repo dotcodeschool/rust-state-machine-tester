@@ -116,3 +116,16 @@ sections:
             message_on_fail: "We couldn't find a 'system.rs' file in your project. Did you forget to create it?"
             message_on_success: "You've successfully created a 'system.rs' file."
 
+          - name: "system module import"
+            slug: "system-module-import"
+            optional: false
+            cmd: "./tests/3-1/system_mod_import_check.sh"
+            message_on_fail: "We couldn't find a 'system' module import in your 'main.rs' file. Did you forget to import it?"
+            message_on_success: "Awesome! You've successfully imported the 'system' module in your 'main.rs' file."
+
+          - name: "system implementation"
+            slug: "system-implementation"
+            optional: false
+            cmd: "./tests/3-1/system_implementation_check.sh"
+            message_on_fail: "Looks like the 'System' struct is not implemented correctly in your 'system.rs' file. Maybe try checking the fields and functions again?"
+            message_on_success: "Great! You've successfully implemented the 'System' struct in your 'system.rs' file."
