@@ -158,3 +158,14 @@ sections:
             cmd: "./tests/3-3/runtime_field_type_check.sh"
             message_on_fail: "Looks like the 'Runtime' struct is not implemented correctly in your 'main.rs' file. Maybe try checking the fields and functions again?"
             message_on_success: "Great! You've successfully implemented the 'Runtime' struct in your 'main.rs' file."
+
+      - name: "Using Our Runtime"
+        slug: "3-4"
+        duration: 3600
+        tests:
+          - name: "runtime usage"
+            slug: "runtime-usage"
+            optional: false
+            cmd: "./tests/3-4/runtime_usage.sh"
+            message_on_fail: "Looks like the 'Runtime' struct is not being used correctly in your 'main.rs' file. Maybe try checking the fields and functions again?"
+            message_on_success: "Great! You've successfully used the 'Runtime' struct in your 'main.rs' file."
