@@ -19,7 +19,18 @@ else
     exit 1
 fi
 
-# Check if required methods are called on the instance
+# Check implementation of inc_nonce
+if ! grep -q "self\.nonce\.insert" "$SYSTEM_FILE"; then
+    echo "Error: inc_nonce implementation should use nonce.insert"
+    exit 1
+fi
+
+if ! grep -q "self\.nonce\.get" "$SYSTEM_FILE"; then
+    echo "Error: inc_nonce implementation should use nonce.get"
+    exit 1
+fi
+
+# Check if required methods are called in the test
 if grep -q "\.inc_block_number()" "$SYSTEM_FILE" && \
    grep -q "\.inc_nonce(" "$SYSTEM_FILE" && \
    grep -q "\.block_number()" "$SYSTEM_FILE"; then
@@ -29,11 +40,16 @@ else
     exit 1
 fi
 
-# Check for sufficient assertions
-if [ $(grep -c "assert_eq!" "$SYSTEM_FILE") -ge 2 ]; then
+# Check for correct assertion patterns
+if grep -q "assert_eq!.*block_number().*0" "$SYSTEM_FILE" && \
+   grep -q "assert_eq!.*block_number().*1" "$SYSTEM_FILE" && \
+   grep -q "assert_eq!.*nonce.*get.*Some(&1)" "$SYSTEM_FILE"; then
     echo "Assertions are correct."
 else
-    echo "Error: Test should include at least two assertions"
+    echo "Error: Test should include:
+    - Assert initial block number is 0
+    - Assert block number is 1 after increment
+    - Assert nonce is 1 after increment"
     exit 1
 fi
 
