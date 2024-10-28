@@ -147,3 +147,14 @@ sections:
             cmd: "./tests/3-2/check_init_system.sh"
             message_on_fail: "Looks like the 'init_system' test is either missing or failing. Did you implement it correctly?"
             message_on_success: "Great! You've successfully written the 'init_system' test for your system pallet."
+
+      - name: "Creating Our Runtime"
+        slug: "3-3"
+        duration: 3600
+        tests:
+          - name: "runtime check"
+            slug: "runtime-check"
+            optional: false
+            cmd: "./tests/3-3/runtime_field_type_check.sh"
+            message_on_fail: "Looks like the 'Runtime' struct is not implemented correctly in your 'main.rs' file. Maybe try checking the fields and functions again?"
+            message_on_success: "Great! You've successfully implemented the 'Runtime' struct in your 'main.rs' file."
