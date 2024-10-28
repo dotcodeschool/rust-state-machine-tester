@@ -9,4 +9,3 @@ fn test_system_implementation() {
     let _pallet = system::Pallet::new();
     assert!(true)
 }
-
