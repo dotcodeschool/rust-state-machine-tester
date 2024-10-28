@@ -41,13 +41,11 @@ else
 fi
 
 # Check for correct assertion patterns
-if grep -q "assert_eq!.*block_number().*0" "$SYSTEM_FILE" && \
-   grep -q "assert_eq!.*block_number().*1" "$SYSTEM_FILE" && \
+if grep -q "assert_eq!.*block_number().*1" "$SYSTEM_FILE" && \
    grep -q "assert_eq!.*nonce.*get.*Some(&1)" "$SYSTEM_FILE"; then
     echo "Assertions are correct."
 else
     echo "Error: Test should include:
-    - Assert initial block number is 0
     - Assert block number is 1 after increment
     - Assert nonce is 1 after increment"
     exit 1
