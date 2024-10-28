@@ -19,14 +19,10 @@ else
     exit 1
 fi
 
-# Check implementation of inc_nonce
-if ! grep -q "self\.nonce\.insert" "$SYSTEM_FILE"; then
-    echo "Error: inc_nonce implementation should use nonce.insert"
-    exit 1
-fi
-
-if ! grep -q "self\.nonce\.get" "$SYSTEM_FILE"; then
-    echo "Error: inc_nonce implementation should use nonce.get"
+# Check implementation of inc_nonce for proper increment pattern
+if ! grep -q "let.*=.*self\.nonce\.get.*unwrap_or(&0)" "$SYSTEM_FILE" && \
+   ! grep -q ".*self\.nonce\.get.*unwrap_or(&0).*+.*1" "$SYSTEM_FILE"; then
+    echo "Error: inc_nonce implementation should get current value and increment it"
     exit 1
 fi
 
