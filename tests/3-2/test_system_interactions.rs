@@ -15,4 +15,8 @@ fn test_system_functionality() {
     // Test block number increment
     pallet.inc_block_number();
     assert_eq!(pallet.block_number(), 1, "Block number should be 1 after increment");
+    
+    // Test nonce increment for new account
+    let alice = "alice".to_string();
+    pallet.inc_nonce(&alice);
 }
