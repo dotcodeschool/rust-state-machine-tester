@@ -43,14 +43,14 @@ sections:
             cmd: "./tests/2-1/balances_wrapper_pallet_struct.sh"
             message_on_fail: "We couldn't find a 'Pallet' struct in your 'balances.rs' file. Maybe you forgot to change the visibility with using 'pub'?"
             message_on_success: "You've successfully created a 'Pallet' struct in your 'balances.rs' file."
-            
+
           - name: "balances module import"
             slug: "balances-module-import"
             optional: false
             cmd: "./tests/2-1/balances_mod_import_check.sh"
             message_on_fail: "We couldn't find a 'balances' module import in your 'main.rs' file. Did you forget to import it?"
             message_on_success: "Awesome! You've successfully imported the 'balances' module in your 'main.rs' file."
-      
+
       - name: "Adding State to Our Pallet"
         slug: "2-2"
         duration: 3600
@@ -61,7 +61,7 @@ sections:
             cmd: "./tests/2-2/balances_pallet_field_type_check.sh"
             message_on_fail: "Looks like the initialize function 'new()' is either missing in your 'balances.rs' file or it's not implemented correctly for your balances pallet."
             message_on_success: "Great! Your balances pallet now has a state to keep track of balances."
-      
+
       - name: "Interacting with Balances"
         slug: "2-3"
         duration: 3600
@@ -83,7 +83,7 @@ sections:
             cmd: "./tests/2-4/check_init_balances.sh"
             message_on_fail: "Looks like the basic balance test is failing. Did you implement the 'init_balances' test correctly?"
             message_on_success: "Great! You've successfully written the 'init_balances' test for your balances pallet."
-            
+
       - name: "Enable Balance Transfers"
         slug: "2-5"
         duration: 3600
@@ -140,7 +140,7 @@ sections:
             cmd: "./tests/3-2/system_interactions_wrapper.sh"
             message_on_fail: "Looks like the fields or methods are not implemented correctly in your system pallet."
             message_on_success: "Awesome! You've successfully implemented the 'system' pallet."
-            
+
           - name: "check init system"
             slug: "check-init-system"
             optional: false
@@ -169,3 +169,21 @@ sections:
             cmd: "./tests/3-4/runtime_usage.sh"
             message_on_fail: "Looks like the 'Runtime' struct is not being used correctly in your 'main.rs' file. Maybe try checking the fields and functions again?"
             message_on_success: "Great! You've successfully used the 'Runtime' struct in your 'main.rs' file."
+
+      - name: "Derive Debug"
+        slug: "3-5"
+        duration: 3600
+        tests:
+          - name: "check debug derive"
+            slug: "check-debug-derive"
+            optional: false
+            cmd: "./tests/3-5/check_debug_derive.sh"
+            message_on_fail: "Looks like the 'Debug' trait is not derived correctly for your 'Runtime' struct. Did you forget to derive it for one of the fields?"
+            message_on_success: "Great! You've successfully derived the 'Debug' trait for your 'Runtime' struct."
+
+          - name: "check debug println"
+            slug: "check-debug-println"
+            optional: false
+            cmd: "./tests/3-5/check_debug_println.sh"
+            message_on_fail: "Looks like you're not printing the 'Runtime' struct correctly. Maybe try using the '{:#?}' format with 'println!'?"
+            message_on_success: "Great! You've successfully printed the 'Runtime' struct using 'println!'."
