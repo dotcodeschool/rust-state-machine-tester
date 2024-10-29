@@ -1,10 +1,10 @@
-use version_check_macro::version_gate;
+use version_check_macro::version_range;
 
 #[path = "../../src/system.rs"]
 mod system;
 
 #[test]
-#[version_gate("0.3.2")]
+#[version_range(">=0.3.2, <0.4.3")]
 fn test_system_functionality() {
     // Create a new instance
     let mut pallet = system::Pallet::new();

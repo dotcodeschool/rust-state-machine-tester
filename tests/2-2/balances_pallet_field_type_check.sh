@@ -3,9 +3,8 @@
 # Define the file to check
 BALANCES_FILE="src/balances.rs"
 
-if grep -q "pub struct Pallet<AccountId, Balance>" "$BALANCES_FILE"; then
-    ./tests/helpers/update_version.sh "0.4.3"
-fi
+source ./tests/helpers/check_struct_and_update_version.sh
+check_struct_and_update_version "$BALANCES_FILE" "pub struct Pallet<AccountId, Balance>" "0.4.3"
 
 # Check if the Pallet struct contains the `balances` field and/or the `new()` method
 if grep -q "pub struct Pallet" "$BALANCES_FILE"; then

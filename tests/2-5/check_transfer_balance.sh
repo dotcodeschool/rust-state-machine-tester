@@ -15,7 +15,7 @@ fi
 TEST_CONTENT=$(sed -n '/fn transfer_balance/,/^    }$/p' "$BALANCES_FILE")
 
 # Check if Pallet is initialized in transfer_balance
-if echo "$TEST_CONTENT" | grep -q "let mut.*=.*Pallet::new()"; then
+if echo "$TEST_CONTENT" | grep -q "let mut.*=.*Pallet::new()" || echo "$TEST_CONTENT" | grep -q "let mut.*=.*Pallet::<String, u128>::new()"; then
     echo "Pallet is initialized."
 else
     echo "Error: Pallet is not initialized in your test."

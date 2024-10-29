@@ -2,6 +2,9 @@
 ./tests/helpers/update_version.sh "0.4.1"
 SYSTEM_FILE="src/system.rs"
 
+source ./tests/helpers/check_struct_and_update_version.sh
+check_struct_and_update_version "src/balances.rs" "pub struct Pallet<AccountId, Balance>" "0.4.3"
+
 # Check type definitions exist
 if ! grep -q "type AccountId = String;" "$SYSTEM_FILE"; then
     echo "Missing AccountId type definition"

@@ -12,7 +12,7 @@ else
 fi
 
 # Check if Pallet is initialized in the test
-if grep -q "let mut balances = super::Pallet::new();" "$BALANCES_FILE"; then
+if grep -q "let mut balances = super::Pallet::new();" "$BALANCES_FILE" || grep -q "let mut balances = super::Pallet::<String, u128>::new();" "$BALANCES_FILE"; then
     echo "Pallet is initialized correctly."
 else
     echo "Error: Pallet is not initialized correctly in your test."
