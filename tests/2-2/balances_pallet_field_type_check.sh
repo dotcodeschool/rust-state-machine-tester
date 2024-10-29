@@ -3,6 +3,10 @@
 # Define the file to check
 BALANCES_FILE="src/balances.rs"
 
+if grep -q "pub struct Pallet<AccountId, Balance>" "$BALANCES_FILE"; then
+    ./tests/helpers/update_version.sh "0.4.3"
+fi
+
 # Check if the Pallet struct contains the `balances` field and/or the `new()` method
 if grep -q "pub struct Pallet" "$BALANCES_FILE"; then
     if grep -q "balances: BTreeMap<String, u128>" "$BALANCES_FILE" || grep -q "balances: BTreeMap<AccountId, Balance>" "$BALANCES_FILE"; then
