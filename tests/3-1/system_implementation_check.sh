@@ -5,7 +5,7 @@ SYSTEM_FILE="src/system.rs"
 
 # Check if the Pallet struct contains the `balances` field and/or the `new()` method
 if grep -q "pub struct Pallet" "$SYSTEM_FILE"; then
-    if grep -q "block_number: u32" "$SYSTEM_FILE" && grep -q "nonce: BTreeMap<String, u32>" "$SYSTEM_FILE"; then
+    if (grep -q "block_number: u32" "$SYSTEM_FILE" || grep -q "block_number: BlockNumber" "$SYSEM_FILE") && (grep -q "nonce: BTreeMap<String, u32>" "$SYSTEM_FILE" || grep -q "nonce: BTreeMap<AccountId, Nonce>" "$SYSTEM_FILE"); then
         cargo test test_system_implementation
     else
         # Pallet struct exists, but either `block_number` or `nonce` fields are missing or not implemented correctly

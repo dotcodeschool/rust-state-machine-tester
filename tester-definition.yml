@@ -187,3 +187,21 @@ sections:
             cmd: "./tests/3-5/check_debug_println.sh"
             message_on_fail: "Looks like you're not printing the 'Runtime' struct correctly. Maybe try using the '{:#?}' format with 'println!'?"
             message_on_success: "Great! You've successfully printed the 'Runtime' struct using 'println!'."
+
+      - name: "Using Named Types"
+        slug: "4-1"
+        duration: 3600
+        tests:
+          - name: "balances named types"
+            slug: "balances-named-types"
+            optional: false
+            cmd: "./tests/4-1/balances_named_types_check.sh"
+            message_on_fail: "Looks like the named types are not implemented correctly in your balances pallet. Maybe try checking the field types and function signatures again?"
+            message_on_success: "Great! You've successfully implemented the named types in your balances pallet."
+
+          - name: "system named types"
+            slug: "system-named-types"
+            optional: false
+            cmd: "./tests/4-1/system_named_types_check.sh"
+            message_on_fail: "Looks like the named types are not implemented correctly in your system pallet. Maybe try checking the field types and function signatures again?"
+            message_on_success: "Great! You've successfully implemented the named types in your system pallet."
