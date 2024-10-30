@@ -1,9 +1,17 @@
 #!/bin/bash
 ./tests/helpers/update_version.sh "0.4.1"
+MAIN_FILE="src/main.rs"
 SYSTEM_FILE="src/system.rs"
 
 source ./tests/helpers/check_struct_and_update_version.sh
 check_struct_and_update_version "src/balances.rs" "pub struct Pallet<AccountId, Balance>" "0.4.3"
+
+if grep -q "pub type AccountId = " "$MAIN_FILE" && \
+   grep -q "pub type BlockNumber = " "$MAIN_FILE" && \
+   grep -q "pub type Nonce = " "$MAIN_FILE"; then
+    echo "Found public definitions for AccountId, BlockNumber, and Nonce in main.rs."
+    exit 0
+fi
 
 # Check type definitions exist
 if ! grep -q "type AccountId = String;" "$SYSTEM_FILE"; then

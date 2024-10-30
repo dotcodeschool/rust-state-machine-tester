@@ -12,7 +12,7 @@ if grep -q "pub struct Pallet" "$SYSTEM_FILE"; then
         cargo test test_system_implementation
     else
         # Pallet struct exists, but either `block_number` or `nonce` fields are missing or not implemented correctly
-        echo "Pallet struct found in $SYSTEM_FILE, but either `block_number` or `nonce` fields are missing or not implemented correctly. Please check your implementation."
+        echo "Pallet struct found in $SYSTEM_FILE, but either 'block_number' or 'nonce' fields are missing or not implemented correctly. Please check your implementation."
         exit 1
     fi
 else
