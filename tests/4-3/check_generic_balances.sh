@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Paths to files
 BALANCES_FILE="src/balances.rs"
 MAIN_FILE="src/main.rs"
@@ -39,5 +41,7 @@ else
     echo "Error: Generic Pallet not instantiated with AccountId and Balance in main.rs."
     exit 1
 fi
+
+cargo run
 
 echo "All checks passed: Balances Pallet correctly implemented as a generic type."

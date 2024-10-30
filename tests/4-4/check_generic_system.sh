@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Paths to files
 SYSTEM_FILE="src/system.rs"
 MAIN_FILE="src/main.rs"
@@ -41,5 +43,7 @@ else
     echo "Error: Generic System Pallet not instantiated with AccountId, BlockNumber, and Nonce in main.rs."
     exit 1
 fi
+
+cargo run
 
 echo "All checks passed: System Pallet correctly implemented as a generic type."
