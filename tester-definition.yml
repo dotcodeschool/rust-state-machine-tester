@@ -216,3 +216,14 @@ sections:
             cmd: "./tests/4-3/check_generic_balances.sh"
             message_on_fail: "Please ensure that the `Pallet` struct in `balances.rs` is generic over AccountId and Balance, with the correct trait constraints."
             message_on_success: "Generics correctly implemented in Balances Pallet."
+
+      - name: "Make System Pallet Generic"
+        slug: "4-4"
+        duration: 3600
+        tests:
+          - name: "check generics in system pallet"
+            slug: "check-generics-in-system-pallet"
+            optional: false
+            cmd: "./tests/4-4/check_generic_system.sh"
+            message_on_fail: "Please ensure the `System` pallet is correctly implemented as a generic over AccountId, BlockNumber, and Nonce, and is instantiated correctly in main.rs."
+            message_on_success: "System Pallet correctly implemented and instantiated with generic types."
