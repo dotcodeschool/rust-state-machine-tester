@@ -1,5 +1,5 @@
 #![feature(proc_macro_hygiene)]
-use version_check_macro::version_range;
+use version_check_macro::{version_range, version_gate};
 
 #[path = "2-1/test_pallet_struct_exists.rs"]
 #[version_range("=0.2.1")]

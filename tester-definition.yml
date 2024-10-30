@@ -205,3 +205,14 @@ sections:
             cmd: "./tests/4-1/system_named_types_check.sh"
             message_on_fail: "Looks like the named types are not implemented correctly in your system pallet. Maybe try checking the field types and function signatures again?"
             message_on_success: "Great! You've successfully implemented the named types in your system pallet."
+
+      - name: "Make Balances Pallet Generic"
+        slug: "4-3"
+        duration: 3600
+        tests:
+          - name: "check generics in balances pallet"
+            slug: "check-generics-in-balances-pallet"
+            optional: false
+            cmd: "./tests/4-3/check_generic_balances.sh"
+            message_on_fail: "Please ensure that the `Pallet` struct in `balances.rs` is generic over AccountId and Balance, with the correct trait constraints."
+            message_on_success: "Generics correctly implemented in Balances Pallet."
