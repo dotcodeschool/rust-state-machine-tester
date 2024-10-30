@@ -11,8 +11,11 @@ else
     exit 1
 fi
 
-# Check if Pallet is initialized in the test
-if grep -q "let mut .* = super::Pallet::new();" "$SYSTEM_FILE" || grep -q "let mut .* = super::Pallet::<String, u128>::new();" "$SYSTEM_FILE"; then
+# Check if Pallet is initialized in the test with or without generics
+if grep -q "let mut .* = super::Pallet::new();" "$SYSTEM_FILE" || \
+   grep -q "let mut .* = super::Pallet::<.*>::new();" "$SYSTEM_FILE" || \
+   grep -q "let mut .* = super::Pallet::<.*,.*>::new();" "$SYSTEM_FILE" || \
+   grep -q "let mut .* = super::Pallet::<.*,.*,.*>::new();" "$SYSTEM_FILE"; then
     echo "Pallet is initialized correctly."
 else
     echo "Error: Pallet is not initialized correctly in your test."
@@ -20,8 +23,8 @@ else
 fi
 
 # Check implementation of inc_nonce for proper increment pattern
-if ! grep -q "let.*=.*self\.nonce\.get.*unwrap_or(&0)" "$SYSTEM_FILE" && \
-   ! grep -q ".*self\.nonce\.get.*unwrap_or(&0).*+.*1" "$SYSTEM_FILE"; then
+if ! grep -q "let.*=.*self\.nonce\.get.*unwrap_or(&.*zero()\|0)" "$SYSTEM_FILE" && \
+   ! grep -q ".*\(new_nonce.*=.*nonce.*+.*one()\|.*+.*1\)" "$SYSTEM_FILE"; then
     echo "Error: inc_nonce implementation should get current value and increment it"
     exit 1
 fi
@@ -38,7 +41,8 @@ fi
 
 # Check for correct assertion patterns
 if grep -q "assert_eq!.*block_number().*1" "$SYSTEM_FILE" && \
-   grep -q "assert_eq!.*nonce.*get.*Some(&1)" "$SYSTEM_FILE"; then
+   (grep -q "assert_eq!.*nonce.*get.*Some(&1)" "$SYSTEM_FILE" || \
+    grep -q "assert_eq!.*\.nonce\.get.*Some(&1)" "$SYSTEM_FILE"); then
     echo "Assertions are correct."
 else
     echo "Error: Test should include:
