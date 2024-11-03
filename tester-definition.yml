@@ -238,3 +238,14 @@ sections:
             cmd: "./tests/4-5/check_system_config.sh"
             message_on_fail: "Please ensure the `System` pallet is correctly implemented as a configurable pallet."
             message_on_success: "System Pallet correctly implemented as a configurable pallet."
+
+      - name: "Make Balances Configurable"
+        slug: "4-6"
+        duration: 3600
+        tests:
+          - name: "check for configurable balances pallet"
+            slug: "check-for-configurable-balances-pallet"
+            optional: false
+            cmd: "./tests/4-6/check_balances_config.sh"
+            message_on_fail: "Please ensure the `Balances` pallet is correctly implemented as a configurable pallet."
+            message_on_success: "Balances Pallet correctly implemented as a configurable pallet."
