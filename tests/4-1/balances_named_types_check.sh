@@ -5,6 +5,7 @@ MAIN_FILE="src/main.rs"
 
 source ./tests/helpers/check_struct_and_update_version.sh
 check_struct_and_update_version "$BALANCES_FILE" "pub struct Pallet<AccountId, Balance>" "0.4.3"
+check_struct_and_update_version "$BALANCES_FILE" "pub struct Pallet<T: Config>" "0.4.6"
 
 # Check type definitions exist
 if (! grep -q "type AccountId = String;" "$BALANCES_FILE" || ! grep -q "type Balance = u128;" "$BALANCES_FILE") && (! grep -q "pub type AccountId = String;" "$MAIN_FILE" || ! grep -q "pub type Balance = u128;" "$MAIN_FILE"); then
