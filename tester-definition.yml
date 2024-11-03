@@ -188,6 +188,9 @@ sections:
             message_on_fail: "Looks like you're not printing the 'Runtime' struct correctly. Maybe try using the '{:#?}' format with 'println!'?"
             message_on_success: "Great! You've successfully printed the 'Runtime' struct using 'println!'."
 
+  - name: "Generic and Configurable Types"
+    slug: "4"
+    lessons:
       - name: "Using Named Types"
         slug: "4-1"
         duration: 3600
