@@ -227,3 +227,14 @@ sections:
             cmd: "./tests/4-4/check_generic_system.sh"
             message_on_fail: "Please ensure the `System` pallet is correctly implemented as a generic over AccountId, BlockNumber, and Nonce, and is instantiated correctly in main.rs."
             message_on_success: "System Pallet correctly implemented and instantiated with generic types."
+
+      - name: "Make System Configurable"
+        slug: "4-5"
+        duration: 3600
+        tests:
+          - name: "check for configurable system pallet"
+            slug: "check-for-configurable-system-pallet"
+            optional: false
+            cmd: "./tests/4-5/check_system_config.sh"
+            message_on_fail: "Please ensure the `System` pallet is correctly implemented as a configurable pallet."
+            message_on_success: "System Pallet correctly implemented as a configurable pallet."
