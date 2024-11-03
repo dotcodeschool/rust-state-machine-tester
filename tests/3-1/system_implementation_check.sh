@@ -2,10 +2,12 @@
 ./tests/helpers/update_version.sh "0.3.1"
 
 # Define the file to check
+BALANCES_FILE="src/balances.rs"
 SYSTEM_FILE="src/system.rs"
 
 source ./tests/helpers/check_struct_and_update_version.sh
-check_struct_and_update_version "src/balances.rs" "pub struct Pallet<AccountId, Balance>" "0.4.3"
+check_struct_and_update_version "$BALANCES_FILE" "pub struct Pallet<AccountId, Balance>" "0.4.3"
+check_struct_and_update_version "$BALANCES_FILE" "pub struct Pallet<T: Config>" "0.4.6"
 
 # Check if the Pallet struct and Config trait are implemented correctly
 if grep -q "pub struct Pallet" "$SYSTEM_FILE"; then
