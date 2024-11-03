@@ -6,19 +6,24 @@ set -e
 BALANCES_FILE="src/balances.rs"
 MAIN_FILE="src/main.rs"
 
-# Step 1: Check if `Pallet` is generic over AccountId and Balance
-if grep -q "pub struct Pallet<.*AccountId.*Balance.*>" "$BALANCES_FILE"; then
-    echo "Found generics in Pallet struct for AccountId and Balance."
+# Step 1: Check if `Pallet` struct uses generics for `AccountId` and `Balance` or a `Config` trait
+if grep -q "pub struct Pallet<.*AccountId.*Balance.*>" "$BALANCES_FILE" || \
+   grep -q "pub struct Pallet<T: Config>" "$BALANCES_FILE"; then
+    echo "Found generics in Pallet struct for AccountId and Balance, or with Config trait."
 else
-    echo "Error: Generics not found in Pallet struct for AccountId and Balance."
+    echo "Error: Generics not found in Pallet struct for AccountId and Balance, or Config trait not implemented."
     exit 1
 fi
 
-# Step 2: Check for necessary trait constraints on AccountId and Balance
+# Step 2: Check for necessary trait constraints on `AccountId` and `Balance` in either `impl` block or `Config` trait
 if grep -q "impl<AccountId, Balance> Pallet<AccountId, Balance>" "$BALANCES_FILE" && \
    grep -q "AccountId: Ord + Clone" "$BALANCES_FILE" && \
    grep -q "Balance: Zero + CheckedSub + CheckedAdd + Copy" "$BALANCES_FILE"; then
     echo "Found trait constraints on AccountId and Balance in impl block."
+elif grep -q "pub trait Config" "$BALANCES_FILE" && \
+     grep -q "type AccountId: Ord + Clone" "$BALANCES_FILE" && \
+     grep -q "type Balance: Zero + CheckedSub + CheckedAdd + Copy" "$BALANCES_FILE"; then
+    echo "Found trait constraints on AccountId and Balance in Config trait."
 else
     echo "Error: Missing or incorrect trait constraints for AccountId and Balance."
     exit 1
@@ -35,13 +40,15 @@ fi
 
 # Step 4: Check for explicit use of AccountId and Balance in the Runtime struct or its instantiation
 if grep -q "balances: balances::Pallet<types::AccountId, types::Balance>" "$MAIN_FILE" || \
-   grep -q "balances::Pallet::<types::AccountId, types::Balance>::new()" "$MAIN_FILE"; then
-    echo "Found instantiation of generic Pallet with AccountId and Balance."
+   grep -q "balances::Pallet::<types::AccountId, types::Balance>::new()" "$MAIN_FILE" || \
+   grep -q "balances: balances::Pallet<Self>" "$MAIN_FILE"; then
+    echo "Found instantiation of balances Pallet with either direct generics or Self for configurable Pallet."
 else
-    echo "Error: Generic Pallet not instantiated with AccountId and Balance in main.rs."
+    echo "Error: Generic Pallet not instantiated with AccountId and Balance, or as Config trait in main.rs."
     exit 1
 fi
 
+# Run the project to confirm no errors
 cargo run
 
-echo "All checks passed: Balances Pallet correctly implemented as a generic type."
+echo "All checks passed: Balances Pallet correctly implemented as a generic type or with Config trait."
