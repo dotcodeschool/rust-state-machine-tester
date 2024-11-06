@@ -252,3 +252,14 @@ sections:
             cmd: "./tests/4-6/check_balances_config.sh"
             message_on_fail: "Please ensure the `Balances` pallet is correctly implemented as a configurable pallet."
             message_on_success: "Balances Pallet correctly implemented as a configurable pallet."
+      
+      - name: "Tight Coupling"
+        slug: "4-7"
+        duration: 3600
+        tests:
+          - name: "check tight coupling"
+            slug: "check-tight-coupling"
+            optional: false
+            cmd: "./tests/4-7/check_tight_coupling.sh"
+            message_on_fail: "Please ensure the `Balances` pallet is correctly implemented with tight coupling to the `System` pallet."
+            message_on_success: "Balances Pallet correctly implemented with tight coupling to the System Pallet."
