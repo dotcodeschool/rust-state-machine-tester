@@ -6,49 +6,76 @@ set -e
 BALANCES_FILE="src/balances.rs"
 MAIN_FILE="src/main.rs"
 
-# Step 1: Check if `Pallet` struct uses generics for `AccountId` and `Balance` or a `Config` trait
-if grep -q "pub struct Pallet<.*AccountId.*Balance.*>" "$BALANCES_FILE" || \
-   grep -q "pub struct Pallet<T: Config>" "$BALANCES_FILE"; then
-    echo "Found generics in Pallet struct for AccountId and Balance, or with Config trait."
+# Step 1: Check if `Config` trait is defined in balances.rs
+if grep -q "pub trait Config" "$BALANCES_FILE"; then
+    echo "Found Config trait in balances.rs."
 else
-    echo "Error: Generics not found in Pallet struct for AccountId and Balance, or Config trait not implemented."
+    echo "Error: Config trait not found in balances.rs."
     exit 1
 fi
 
-# Step 2: Check for necessary trait constraints on `AccountId` and `Balance` in either `impl` block or `Config` trait
-if grep -q "impl<AccountId, Balance> Pallet<AccountId, Balance>" "$BALANCES_FILE" && \
-   grep -q "AccountId: Ord + Clone" "$BALANCES_FILE" && \
-   grep -q "Balance: Zero + CheckedSub + CheckedAdd + Copy" "$BALANCES_FILE"; then
-    echo "Found trait constraints on AccountId and Balance in impl block."
-elif grep -q "pub trait Config" "$BALANCES_FILE" && \
-     grep -q "type AccountId: Ord + Clone" "$BALANCES_FILE" && \
-     grep -q "type Balance: Zero + CheckedSub + CheckedAdd + Copy" "$BALANCES_FILE"; then
-    echo "Found trait constraints on AccountId and Balance in Config trait."
+# Step 2: Check if `Config` trait inherits from `system::Config` and defines `Balance`
+if grep -q "pub trait Config: crate::system::Config" "$BALANCES_FILE"; then
+    echo "Config trait inherits from system::Config."
+    
+    # Step 2a: Ensure that `AccountId` is not defined within the balances::Config trait block.
+    # Extract only the `Config` trait definition block and check for `type AccountId` within that scope.
+    if awk '/pub trait Config: crate::system::Config/,/}/' "$BALANCES_FILE" | grep -q "type AccountId"; then
+        echo "Error: type AccountId should be removed from balances::Config when inherited from system::Config."
+        exit 1
+    else
+        echo "Confirmed: AccountId is inherited from system::Config in balances::Config and is not redefined."
+    fi
 else
-    echo "Error: Missing or incorrect trait constraints for AccountId and Balance."
+    # Alternative: Check if `AccountId` and `Balance` are defined directly in Config
+    if grep -q "type AccountId: Ord + Clone" "$BALANCES_FILE" && \
+       grep -q "type Balance: Zero + CheckedSub + CheckedAdd + Copy" "$BALANCES_FILE"; then
+        echo "Config trait defines AccountId and Balance directly."
+    else
+        echo "Error: Config trait must either inherit system::Config or define AccountId and Balance directly."
+        exit 1
+    fi
+fi
+
+# Step 3: Check if Pallet struct is defined with a single generic parameter T implementing Config
+if grep -q "pub struct Pallet<T: Config>" "$BALANCES_FILE"; then
+    echo "Found Pallet struct with generic type T implementing Config."
+else
+    echo "Error: Pallet struct not defined with generic type T implementing Config."
     exit 1
 fi
 
-# Step 3: Check if AccountId and Balance are defined in main.rs and are public
-if grep -q "pub type AccountId = " "$MAIN_FILE" && \
-   grep -q "pub type Balance = " "$MAIN_FILE"; then
-    echo "Found public definitions for AccountId and Balance in main.rs."
+# Step 4: Check for usage of associated types with T:: syntax in functions
+if grep -q "balances: BTreeMap<T::AccountId, T::Balance>" "$BALANCES_FILE" && \
+   grep -q "self.balances.get(who).unwrap_or(&T::Balance::zero())" "$BALANCES_FILE" && \
+   grep -q "self.balances.insert(caller, new_caller_balance)" "$BALANCES_FILE" && \
+   grep -q "self.balances.insert(to, new_to_balance)" "$BALANCES_FILE"; then
+    echo "Found usage of associated types with T:: syntax in functions."
 else
-    echo "Error: Missing public definitions for AccountId or Balance in main.rs."
+    echo "Error: Incorrect or missing usage of associated types (T::AccountId, T::Balance) in functions."
     exit 1
 fi
 
-# Step 4: Check for explicit use of AccountId and Balance in the Runtime struct or its instantiation
-if grep -q "balances: balances::Pallet<types::AccountId, types::Balance>" "$MAIN_FILE" || \
-   grep -q "balances::Pallet::<types::AccountId, types::Balance>::new()" "$MAIN_FILE" || \
+# Step 5: Check if Runtime implements Config trait for balances in main.rs and uses Self for balances instantiation
+if grep -q "impl balances::Config for Runtime" "$MAIN_FILE" && \
    grep -q "balances: balances::Pallet<Self>" "$MAIN_FILE"; then
-    echo "Found instantiation of balances Pallet with either direct generics or Self for configurable Pallet."
+    # Scoped check for `type AccountId` only within `impl balances::Config for Runtime` block if inherited
+    if grep -q "pub trait Config: crate::system::Config" "$BALANCES_FILE"; then
+        if awk '/impl balances::Config for Runtime/,/}/' "$MAIN_FILE" | grep -q "type AccountId"; then
+            echo "Error: AccountId should not be redefined in balances::Config for Runtime when inherited."
+            exit 1
+        else
+            echo "Confirmed: AccountId is not redefined in balances::Config implementation for Runtime in inherited setup."
+        fi
+    else
+        echo "Found implementation of balances::Config for Runtime with direct AccountId definition."
+    fi
 else
-    echo "Error: Generic Pallet not instantiated with AccountId and Balance, or as Config trait in main.rs."
+    echo "Error: Runtime does not implement balances::Config trait, or balances field does not use Pallet<Self>."
     exit 1
 fi
 
-# Run the project to confirm no errors
-cargo run
+# Run tests to confirm setup
+cargo test --quiet
 
-echo "All checks passed: Balances Pallet correctly implemented as a generic type or with Config trait."
+echo "All checks passed: Balances Pallet correctly implemented with Config trait."
