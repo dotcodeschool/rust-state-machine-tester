@@ -51,8 +51,11 @@ if ! echo "$TRANSFER_FN" | grep -q "amount:.*"; then
     echo "transfer function must take amount parameter"
     exit 1
 fi
-if ! echo "$TRANSFER_FN" | grep -q "\-> *Result"; then
-    echo "transfer function must return Result"
+RETURN_TYPE=$(echo "$TRANSFER_FN" | grep -o "\->.*{" | sed 's/{$//' | tr -d '\n')
+if echo "$RETURN_TYPE" | grep -q "\-> *Result" || echo "$RETURN_TYPE" | grep -q "\-> *\([[:alnum:]_]*::\)*DispatchResult"; then
+    echo "Transfer function has valid return type"
+else
+    echo "transfer function must return Result or DispatchResult"
     exit 1
 fi
 
