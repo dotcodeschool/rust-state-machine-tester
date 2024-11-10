@@ -309,3 +309,14 @@ sections:
             cmd: "./tests/5-2/check_type_definitions.sh"
             message_on_fail: "Please ensure you've defined all required types correctly in the types module. Check that Extrinsic uses AccountId and RuntimeCall, Header uses BlockNumber, and Block uses Header and Extrinsic."
             message_on_success: "Great! You've successfully defined all the required block types."
+
+      - name: "Executing Blocks"
+        slug: "5-3"
+        duration: 3600
+        tests:
+          - name: "check execute block implementation"
+            slug: "check-execute-block"
+            optional: false
+            cmd: "./tests/5-3/check_execute_block.sh"
+            message_on_fail: "Please ensure your execute_block implementation includes block number increment, validation, proper extrinsic iteration with nonce updates, and error handling with block/extrinsic information."
+            message_on_success: "Great! You've successfully implemented the execute_block function with proper block validation and extrinsic processing."
