@@ -320,3 +320,14 @@ sections:
             cmd: "./tests/5-3/check_execute_block.sh"
             message_on_fail: "Please ensure your execute_block implementation includes block number increment, validation, proper extrinsic iteration with nonce updates, and error handling with block/extrinsic information."
             message_on_success: "Great! You've successfully implemented the execute_block function with proper block validation and extrinsic processing."
+
+      - name: "Dispatching Calls"
+        slug: "5-4"
+        duration: 3600
+        tests:
+          - name: "check dispatch implementation"
+            slug: "check-dispatch-implementation"
+            optional: false
+            cmd: "./tests/5-4/check_dispatch_implementation.sh"
+            message_on_fail: "Please ensure your RuntimeCall enum and dispatch implementation are correct. Check that BalancesTransfer variant has the correct fields and that dispatch properly handles the transfer call with error propagation."
+            message_on_success: "Great! You've successfully implemented the RuntimeCall enum and dispatch function."
