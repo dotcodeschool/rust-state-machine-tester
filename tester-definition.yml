@@ -298,3 +298,14 @@ sections:
             cmd: "./tests/5-1/check_transfer_fn_return_type.sh"
             message_on_fail: "Please ensure the `transfer` function in the `support` module returns the correct type `DispatchResult`."
             message_on_success: "Transfer function in the `support` module returns the correct type `DispatchResult`."
+      
+      - name: "Create Your Block Type"
+        slug: "5-2"
+        duration: 3600
+        tests:
+          - name: "check type definitions"
+            slug: "check-type-definitions"
+            optional: false
+            cmd: "./tests/5-2/check_type_definitions.sh"
+            message_on_fail: "Please ensure you've defined all required types correctly in the types module. Check that Extrinsic uses AccountId and RuntimeCall, Header uses BlockNumber, and Block uses Header and Extrinsic."
+            message_on_success: "Great! You've successfully defined all the required block types."

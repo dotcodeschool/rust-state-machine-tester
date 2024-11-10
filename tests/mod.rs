@@ -47,3 +47,7 @@ mod test_system_interactions;
 #[path = "5-1/support_tests.rs"]
 #[version_gate("0.5.1")]
 mod support_tests;
+
+#[path = "5-2/test_block_types.rs"]
+#[version_gate("0.5.2")]
+mod block_types_tests;
