@@ -284,3 +284,10 @@ sections:
             cmd: "./tests/5-1/support_implementation_check.sh"
             message_on_fail: "Looks like the `support` module is not implemented correctly in your runtime. Maybe try checking the fields and functions again?"
             message_on_success: "Great! You've successfully implemented the `support` module in your runtime."
+      
+          - name: "support module import"
+            slug: "support-module-import"
+            optional: false
+            cmd: "./tests/5-1/support_mod_import_check.sh"
+            message_on_fail: "Please ensure the `support` module is imported correctly in your `main.rs` file."
+            message_on_success: "Support module imported correctly in `main.rs` file."
