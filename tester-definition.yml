@@ -291,3 +291,10 @@ sections:
             cmd: "./tests/5-1/support_mod_import_check.sh"
             message_on_fail: "Please ensure the `support` module is imported correctly in your `main.rs` file."
             message_on_success: "Support module imported correctly in `main.rs` file."
+      
+          - name: "check transfer fn return type"
+            slug: "check-transfer-fn-return-type"
+            optional: false
+            cmd: "./tests/5-1/check_transfer_fn_return_type.sh"
+            message_on_fail: "Please ensure the `transfer` function in the `support` module returns the correct type `DispatchResult`."
+            message_on_success: "Transfer function in the `support` module returns the correct type `DispatchResult`."
