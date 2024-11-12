@@ -342,3 +342,14 @@ sections:
             cmd: "./tests/5-5/check_main_function.sh"
             message_on_fail: "Please ensure you've replaced the old transaction code with proper block creation and execution. Check that you're creating a block with the correct header and extrinsics, and using execute_block with proper error handling."
             message_on_success: "Great! You've successfully updated the main function to use block creation and execution."
+      
+      - name: "Pallet Level Dispatch"
+        slug: "5-6"
+        duration: 3600
+        tests:
+          - name: "check pallet dispatch"
+            slug: "check-pallet-dispatch"
+            optional: false
+            cmd: "./tests/5-6/check_pallet_dispatch.sh"
+            message_on_fail: "Please ensure your Balances pallet implements dispatch correctly. Check that the Call enum is defined with Transfer variant and that dispatch properly handles the transfer call."
+            message_on_success: "Great! You've successfully implemented pallet-level dispatch in the Balances pallet."
