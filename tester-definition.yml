@@ -353,3 +353,14 @@ sections:
             cmd: "./tests/5-6/check_pallet_dispatch.sh"
             message_on_fail: "Please ensure your Balances pallet implements dispatch correctly. Check that the Call enum is defined with Transfer variant and that dispatch properly handles the transfer call."
             message_on_success: "Great! You've successfully implemented pallet-level dispatch in the Balances pallet."
+      
+      - name: "Nested Dispatch"
+        slug: "5-7"
+        duration: 3600
+        tests:
+          - name: "check nested dispatch"
+            slug: "check-nested-dispatch"
+            optional: false
+            cmd: "./tests/5-7/check_nested_dispatch.sh"
+            message_on_fail: "Please ensure you've correctly implemented nested dispatch. Check that RuntimeCall uses the nested enum pattern and that dispatch properly routes calls to the balances pallet."
+            message_on_success: "Great! You've successfully implemented nested dispatch in your runtime."
