@@ -2,7 +2,7 @@
 use version_check_macro::{version_range, version_gate};
 
 // --------------------------------
-// Declare modules for 5-1
+// Declare modules
 // --------------------------------
 #[cfg(test)]
 #[path = "../src/support.rs"]
@@ -21,7 +21,7 @@ pub mod balances;
 pub mod proof_of_existence;
 
 // --------------------------------
-// End of 5-1 modules
+// End of module definitions
 // --------------------------------
 
 #[path = "2-1/test_pallet_struct_exists.rs"]

@@ -400,3 +400,14 @@ sections:
             cmd: "./tests/6-3/check_poe_dispatch.sh"
             message_on_fail: "Please ensure you've correctly implemented dispatch for the Proof of Existence pallet. Check that the Call enum variants are defined correctly and that dispatch properly routes calls to the appropriate functions."
             message_on_success: "Great! You've successfully implemented dispatch for the Proof of Existence pallet."
+        
+      - name: "Integrate PoE Into Your Runtime"
+        slug: "6-4"
+        duration: 3600
+        tests:
+          - name: "check poe integration"
+            slug: "check-poe-integration"
+            optional: false
+            cmd: "./tests/6-4/check_poe_integration.sh"
+            message_on_fail: "Please ensure you've correctly integrated the Proof of Existence pallet into your runtime. Check that all necessary types, fields, and implementations are added."
+            message_on_success: "Great! You've successfully integrated the Proof of Existence pallet into your runtime."
