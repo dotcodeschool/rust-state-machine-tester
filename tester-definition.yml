@@ -411,3 +411,14 @@ sections:
             cmd: "./tests/6-4/check_poe_integration.sh"
             message_on_fail: "Please ensure you've correctly integrated the Proof of Existence pallet into your runtime. Check that all necessary types, fields, and implementations are added."
             message_on_success: "Great! You've successfully integrated the Proof of Existence pallet into your runtime."
+        
+      - name: "Add PoE Extrinsics to Blocks"
+        slug: "6-5"
+        duration: 3600
+        tests:
+          - name: "check poe blocks"
+            slug: "check-poe-blocks"
+            optional: false
+            cmd: "./tests/6-5/check_poe_blocks.sh"
+            message_on_fail: "Please ensure you've added blocks with Proof of Existence extrinsics. Check that blocks are numbered correctly and include both CreateClaim and RevokeClaim operations."
+            message_on_success: "Great! You've successfully added Proof of Existence operations to your blocks."
