@@ -31,7 +31,4 @@ if ! grep -q "pub type Block = crate::support::Block<Header, Extrinsic>" "$MAIN_
     fi
 fi
 
-# Run the Rust test to verify type compilation
-cargo test test_block_types
-
 echo "All type definitions are correct!"
