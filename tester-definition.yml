@@ -389,3 +389,14 @@ sections:
             cmd: "./tests/6-2/check_poe_functions.sh"
             message_on_fail: "Please ensure you've correctly implemented all Proof of Existence pallet functions. Check that get_claim, create_claim, and revoke_claim are implemented with proper error handling."
             message_on_success: "Great! You've successfully implemented all the Proof of Existence pallet functions with proper error handling."
+        
+      - name: "Add Proof of Existence Dispatch"
+        slug: "6-3"
+        duration: 3600
+        tests:
+          - name: "check poe dispatch"
+            slug: "check-poe-dispatch"
+            optional: false
+            cmd: "./tests/6-3/check_poe_dispatch.sh"
+            message_on_fail: "Please ensure you've correctly implemented dispatch for the Proof of Existence pallet. Check that the Call enum variants are defined correctly and that dispatch properly routes calls to the appropriate functions."
+            message_on_success: "Great! You've successfully implemented dispatch for the Proof of Existence pallet."

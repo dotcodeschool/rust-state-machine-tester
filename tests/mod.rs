@@ -16,6 +16,10 @@ pub mod system;
 #[path = "../src/balances.rs"]
 pub mod balances;
 
+#[cfg(test)]
+#[path = "../src/proof_of_existence.rs"]
+pub mod proof_of_existence;
+
 // --------------------------------
 // End of 5-1 modules
 // --------------------------------
@@ -47,3 +51,7 @@ mod test_system_interactions;
 #[path = "5-1/support_tests.rs"]
 #[version_gate("0.5.1")]
 mod support_tests;
+
+#[path = "6-3/test_poe_dispatch.rs"]
+#[version_gate("0.6.3")]
+mod test_poe_dispatch;
