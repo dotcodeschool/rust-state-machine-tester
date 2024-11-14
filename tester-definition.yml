@@ -364,3 +364,17 @@ sections:
             cmd: "./tests/5-7/check_nested_dispatch.sh"
             message_on_fail: "Please ensure you've correctly implemented nested dispatch. Check that RuntimeCall uses the nested enum pattern and that dispatch properly routes calls to the balances pallet."
             message_on_success: "Great! You've successfully implemented nested dispatch in your runtime."
+
+  - name: "The Proof of Existence Pallet"  # New section
+    slug: "6"
+    lessons:
+      - name: "Proof of Existence Pallet"
+        slug: "6-1"
+        duration: 3600
+        tests:
+          - name: "check proof of existence implementation"
+            slug: "check-poe-implementation"
+            optional: false
+            cmd: "./tests/6-1/check_poe_implementation.sh"
+            message_on_fail: "Please ensure you've correctly implemented the Proof of Existence pallet. Check that the Config trait, Pallet struct, and storage field are defined correctly."
+            message_on_success: "Great! You've successfully created the basic structure of the Proof of Existence pallet."
