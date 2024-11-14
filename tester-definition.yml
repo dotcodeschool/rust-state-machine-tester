@@ -378,3 +378,14 @@ sections:
             cmd: "./tests/6-1/check_poe_implementation.sh"
             message_on_fail: "Please ensure you've correctly implemented the Proof of Existence pallet. Check that the Config trait, Pallet struct, and storage field are defined correctly."
             message_on_success: "Great! You've successfully created the basic structure of the Proof of Existence pallet."
+        
+      - name: "Proof Of Existence Functions"
+        slug: "6-2"
+        duration: 3600
+        tests:
+          - name: "check poe functions"
+            slug: "check-poe-functions"
+            optional: false
+            cmd: "./tests/6-2/check_poe_functions.sh"
+            message_on_fail: "Please ensure you've correctly implemented all Proof of Existence pallet functions. Check that get_claim, create_claim, and revoke_claim are implemented with proper error handling."
+            message_on_success: "Great! You've successfully implemented all the Proof of Existence pallet functions with proper error handling."
