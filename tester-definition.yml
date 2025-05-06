@@ -4,23 +4,23 @@ sections:
     slug: "1" # This must match `{sectionIndex}`
     lessons:
       - name: "Initialize your Rust Project"
-        slug: "1-1" # This must match `{sectionIndex}-{lessonIndex}`
+        slug: "1-2" # This must match `{sectionIndex}-{lessonIndex}`
         duration: 3600
         tests:
           - name: "cargo init"
             slug: "cargo-init" # This must be unique for this entire course
             optional: false
-            cmd: "./tests/1-1/cargo_init.sh"
+            cmd: "./tests/1-2/cargo_init.sh"
             message_on_fail: "Looks like `cargo run` is failing to execute. Maybe there's a bug in your code?"
             message_on_success: "Congrats! You've successfully initialized your Rust Project."
       - name: "Rust Tooling"
-        slug: "1-2"
+        slug: "1-3"
         duration: 3600
         tests:
           - name: "rustfmt"
             slug: "rustfmt"
             optional: true
-            cmd: "./tests/1-2/rustfmt.sh"
+            cmd: "./tests/1-3/rustfmt.sh"
             message_on_fail: "`rustfmt.toml` not found"
             message_on_success: "Great! Now you can use `rustfmt` to keep your code clean and easy to read."
   - name: "The Balances Pallet"
